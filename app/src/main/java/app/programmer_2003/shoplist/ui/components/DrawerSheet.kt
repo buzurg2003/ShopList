@@ -12,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import app.programmer_2003.shoplist.R
 import app.programmer_2003.shoplist.ui.theme.SectionHeaderColor
 
@@ -32,7 +33,7 @@ val drawerItems = listOf(
 )
 
 @Composable
-fun DrawerSheet() {
+fun DrawerSheet(navController: NavController) {
   ModalDrawerSheet {
     Column(
       modifier = Modifier
@@ -40,12 +41,12 @@ fun DrawerSheet() {
     ) {
       Text(
         "Title",
-        fontSize = 14.sp,
-        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        fontWeight = FontWeight.W600,
         modifier = Modifier.padding(start = 20.dp),
         color = Color(82, 67, 6)
       )
-      Spacer(Modifier.height(20.dp))
+      Spacer(Modifier.height(32.dp))
       Text(
         "Section Header",
         fontWeight = FontWeight.Bold,
@@ -77,13 +78,19 @@ fun DrawerSheet() {
             }
           },
           selected = false,
-          onClick = {},
+          onClick = {
+            if (item.label == "Shop list") {
+              navController.navigate("home")
+            } else if (item.label == "Favourites") {
+              navController.navigate("favourites")
+            }
+          },
           icon = {
             Image(
               painter = painterResource(id = item.iconResId),
               contentDescription = item.contentDescription,
-              modifier = Modifier.size(12.dp), // Adjust the size if needed
-              colorFilter = ColorFilter.tint(Color(44, 22, 13)) // Applying tint
+              modifier = Modifier.size(12.dp),
+              colorFilter = ColorFilter.tint(Color(44, 22, 13))
             )
           }
         )

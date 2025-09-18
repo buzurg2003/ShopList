@@ -28,11 +28,12 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun ShopListTopAppBar(
   onMenuClick: () -> Unit,
-  onAccountClick: () -> Unit
+  onAccountClick: () -> Unit,
+  title: String
 ) {
   TopAppBar(
     title = {
-      ShopListAppBarTitle("Shop list")
+      ShopListAppBarTitle(title)
     },
     navigationIcon = {
       DrawerMenuButton(onMenuClick)
