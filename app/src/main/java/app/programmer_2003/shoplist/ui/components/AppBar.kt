@@ -29,7 +29,8 @@ import androidx.compose.ui.unit.sp
 fun ShopListTopAppBar(
   onMenuClick: () -> Unit,
   onAccountClick: () -> Unit,
-  title: String
+  title: String,
+  color: Color
 ) {
   TopAppBar(
     title = {
@@ -39,7 +40,10 @@ fun ShopListTopAppBar(
       DrawerMenuButton(onMenuClick)
     },
     actions = {
-      AppBarActions(onAccountClick)
+      AppBarActions(
+        onAccountClick,
+        color
+      )
     }
   )
 }
@@ -64,7 +68,8 @@ fun DrawerMenuButton(
 
 @Composable
 fun AppBarActions(
-  onAccountClick: () -> Unit
+  onAccountClick: () -> Unit,
+  iconTint: Color
 ) {
   IconButton(
     onClick = onAccountClick
@@ -75,10 +80,11 @@ fun AppBarActions(
       Modifier
         .height(36.dp)
         .width(36.dp),
-      tint = Color(135, 82, 0)
+      tint = iconTint
     )
   }
 }
+
 
 @Composable
 fun ShopListAppBarTitle(

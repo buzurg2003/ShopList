@@ -60,7 +60,8 @@ fun ShopListScreen(
           },
           onAccountClick = {
             scope.launch {}
-          }
+          },
+          color = Color(135, 82, 0)
         )
       },
       floatingActionButton = {

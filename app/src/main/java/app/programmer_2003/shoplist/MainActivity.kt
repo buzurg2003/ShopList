@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
         ) { innerPadding ->
           NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = "favourites",
           ) {
             composable("home") {
               ShopListScreen(navController)

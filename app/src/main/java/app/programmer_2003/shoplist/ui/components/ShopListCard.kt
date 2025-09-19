@@ -25,7 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.programmer_2003.shoplist.R
-import app.programmer_2003.shoplist.ui.theme.CardButtonColor
+import app.programmer_2003.shoplist.ui.theme.ShopListCardButtonColor
 import app.programmer_2003.shoplist.ui.theme.CardDescriptionColor
 import app.programmer_2003.shoplist.ui.theme.CardTitleColor
 import app.programmer_2003.shoplist.ui.theme.PriceColor
@@ -91,18 +91,18 @@ fun CardMinimal(
         Row() {
           OutlinedButton(
             onClick = onAddToFavoriteClick,
-            border = BorderStroke(1.dp, CardButtonColor),
+            border = BorderStroke(1.dp, ShopListCardButtonColor),
           ) {
             Text(
               stringResource(R.string.add_to_fav),
-              color = CardButtonColor
+              color = ShopListCardButtonColor
             )
           }
           Spacer(Modifier.width(8.dp))
           Button(
             onClick = onBuyClick,
             colors = ButtonDefaults.buttonColors(
-              containerColor = CardButtonColor,
+              containerColor = ShopListCardButtonColor,
               contentColor = Color.White
             )
           ) {
