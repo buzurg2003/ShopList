@@ -3,6 +3,7 @@ package app.programmer_2003.shoplist.ui.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,13 +32,14 @@ import app.programmer_2003.shoplist.ui.theme.CardTitleColor
 import app.programmer_2003.shoplist.ui.theme.PriceColor
 
 @Composable
-fun CardMinimal(
+fun ShopListCard(
   title: String,
   price: String,
   description: String,
   @DrawableRes cardImage: Int,
   onAddToFavoriteClick: () -> Unit,
-  onBuyClick: () -> Unit
+  onBuyClick: () -> Unit,
+  onCardClick: () -> Unit
 ) {
   ElevatedCard(
     elevation = CardDefaults.cardElevation(
@@ -46,6 +48,7 @@ fun CardMinimal(
     modifier = Modifier
       .fillMaxWidth()
       .padding(18.dp)
+      .clickable { onCardClick() }
   ) {
     Image(
       painter = painterResource(cardImage),
