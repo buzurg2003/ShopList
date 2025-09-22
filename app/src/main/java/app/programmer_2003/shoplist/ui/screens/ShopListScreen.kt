@@ -88,7 +88,7 @@ fun ShopListScreen(
           onBuyClick = {},
           onAddToFavoriteClick = {},
           onCardClick = {
-            navController.navigate("list_card")
+            navController.navigate("selected_size")
           }
         )
         ShopListCard(
@@ -99,7 +99,7 @@ fun ShopListScreen(
           onBuyClick = {},
           onAddToFavoriteClick = {},
           onCardClick = {
-            navController.navigate("list_card")
+            navController.navigate("selected_size")
           }
         )
       }

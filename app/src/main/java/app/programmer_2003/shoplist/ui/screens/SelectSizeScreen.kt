@@ -85,7 +85,7 @@ fun SelectSizeScreen(
           Spacer(modifier = Modifier.weight(1f))
           Button(
             onClick = {
-              navController.navigate("next_screen")
+              navController.navigate("count_of_products")
             },
             Modifier
               .align(Alignment.CenterHorizontally)

@@ -8,6 +8,7 @@ import androidx.core.view.WindowCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import app.programmer_2003.shoplist.ui.screens.CountOfProductScreen
 import app.programmer_2003.shoplist.ui.screens.FavouritesScreens
 import app.programmer_2003.shoplist.ui.screens.SelectSizeScreen
 import app.programmer_2003.shoplist.ui.screens.ShopListScreen
@@ -36,8 +37,11 @@ class MainActivity : ComponentActivity() {
           composable("favourites") {
             FavouritesScreens(navController)
           }
-          composable("list_card") {
+          composable("selected_size") {
             SelectSizeScreen(navController)
+          }
+          composable("count_of_products") {
+            CountOfProductScreen(navController)
           }
         }
       }

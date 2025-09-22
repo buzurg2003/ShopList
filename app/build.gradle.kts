@@ -40,6 +40,7 @@ dependencies {
 
   implementation(libs.androidx.compose.material.icons.extended)
   implementation(libs.androidx.navigation.compose.v253)
+  implementation("androidx.compose.material:material:1.6.8")
 
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
