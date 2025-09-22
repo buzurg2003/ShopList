@@ -38,6 +38,7 @@ import app.programmer_2003.shoplist.ui.components.SelectedSizeDropdown
 import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
 import app.programmer_2003.shoplist.ui.components.SwitchButton
 import app.programmer_2003.shoplist.ui.theme.FavouritesCardButtonColor
+import app.programmer_2003.shoplist.ui.theme.scaffoldBackgroundColor
 import kotlinx.coroutines.launch
 
 @Composable
@@ -66,7 +67,7 @@ fun CountOfProductScreen(
           onAccountClick = {
             scope.launch {}
           },
-          color = Color(135, 82, 0)
+          color = scaffoldBackgroundColor
         )
       },
     ) { paddingValues ->

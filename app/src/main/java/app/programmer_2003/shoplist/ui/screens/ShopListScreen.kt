@@ -16,7 +16,11 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -27,16 +31,18 @@ import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
 import kotlinx.coroutines.launch
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import app.programmer_2003.shoplist.ui.components.AddToFavourites
 import app.programmer_2003.shoplist.ui.theme.FABColor
+import app.programmer_2003.shoplist.ui.theme.scaffoldBackgroundColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShopListScreen(
   navController: NavController,
 ) {
-  // Drawer state
   val drawerState = rememberDrawerState(DrawerValue.Closed)
   val scope = rememberCoroutineScope()
+  var showDialog by remember { mutableStateOf(false) }
 
   ModalNavigationDrawer(
     drawerState = drawerState,
@@ -56,7 +62,7 @@ fun ShopListScreen(
           onAccountClick = {
             scope.launch {}
           },
-          color = Color(135, 82, 0)
+          color = scaffoldBackgroundColor
         )
       },
       floatingActionButton = {
@@ -73,6 +79,9 @@ fun ShopListScreen(
       }
     ) { paddingValues ->
       val scrollState = rememberScrollState()
+      if (showDialog) {
+        AddToFavourites(onDismiss = { showDialog = false })
+      }
       Column(
         modifier = Modifier
           .padding(paddingValues)
@@ -86,7 +95,9 @@ fun ShopListScreen(
           price = "27,5 $",
           description = "Great warm shoes from the artificial leather. You can buy this model only in our shop",
           onBuyClick = {},
-          onAddToFavoriteClick = {},
+          onAddToFavoriteClick = {
+            showDialog = true
+          },
           onCardClick = {
             navController.navigate("selected_size")
           }
@@ -97,7 +108,9 @@ fun ShopListScreen(
           price = "27,5 $",
           description = "Great warm shoes from the artificial leather. You can buy this model only in our shop",
           onBuyClick = {},
-          onAddToFavoriteClick = {},
+          onAddToFavoriteClick = {
+            showDialog = true
+          },
           onCardClick = {
             navController.navigate("selected_size")
           }

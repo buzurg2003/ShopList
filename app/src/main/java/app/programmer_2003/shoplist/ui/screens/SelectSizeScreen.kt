@@ -26,6 +26,7 @@ import app.programmer_2003.shoplist.ui.components.DrawerSheet
 import app.programmer_2003.shoplist.ui.components.SelectedSizeDropdown
 import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
 import app.programmer_2003.shoplist.ui.theme.FavouritesCardButtonColor
+import app.programmer_2003.shoplist.ui.theme.scaffoldBackgroundColor
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,7 +55,7 @@ fun SelectSizeScreen(
           onAccountClick = {
             scope.launch {}
           },
-          color = Color(135, 82, 0)
+          color = scaffoldBackgroundColor
         )
       },
     ) { paddingValues ->

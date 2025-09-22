@@ -32,6 +32,7 @@ import app.programmer_2003.shoplist.ui.components.DrawerSheet
 import app.programmer_2003.shoplist.ui.components.FavouritesListCard
 import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
 import app.programmer_2003.shoplist.ui.theme.FavouritesCardButtonColor
+import app.programmer_2003.shoplist.ui.theme.scaffoldBackgroundColor
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,7 +62,7 @@ fun FavouritesScreens(
           onAccountClick = {
             scope.launch {}
           },
-          color = Color(82,67,62)
+          color = scaffoldBackgroundColor
         )
       },
     ) { paddingValues ->
