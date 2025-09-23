@@ -24,7 +24,6 @@ fun ChatAlert(
   val keyboardController = LocalSoftwareKeyboardController.current
 
   LaunchedEffect(Unit) {
-    // Delay to wait until dialog fully composes
     delay(50)
     focusRequester.requestFocus()
     keyboardController?.show()
