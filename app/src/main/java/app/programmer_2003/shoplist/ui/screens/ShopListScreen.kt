@@ -23,18 +23,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import app.programmer_2003.shoplist.R
-import app.programmer_2003.shoplist.ui.components.ShopListCard
-import app.programmer_2003.shoplist.ui.components.DrawerSheet
-import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
-import kotlinx.coroutines.launch
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import app.programmer_2003.shoplist.ui.components.AddToFavourites
+import app.programmer_2003.shoplist.ui.components.DrawerSheet
+import app.programmer_2003.shoplist.ui.components.ShopListCard
+import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
 import app.programmer_2003.shoplist.ui.theme.FABColor
 import app.programmer_2003.shoplist.ui.theme.scaffoldBackgroundColor
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,7 +42,8 @@ fun ShopListScreen(
 ) {
   val drawerState = rememberDrawerState(DrawerValue.Closed)
   val scope = rememberCoroutineScope()
-  var showDialog by remember { mutableStateOf(false) }
+  var showChatAlertDialog by remember { mutableStateOf(false) }
+  var showAddToFavouritesDialog by remember { mutableStateOf(false) }
   var messageText by remember { mutableStateOf("") }
 
   ModalNavigationDrawer(
@@ -70,7 +70,7 @@ fun ShopListScreen(
       floatingActionButton = {
         FloatingActionButton(
           onClick = {
-            showDialog = true
+            showChatAlertDialog = true
           },
           containerColor = FABColor
         ) {
@@ -83,16 +83,23 @@ fun ShopListScreen(
       }
     ) { paddingValues ->
       val scrollState = rememberScrollState()
-      if (showDialog) {
+      if (showChatAlertDialog) {
         ChatAlert(
           text = messageText,
           onTextChanged = { messageText = it },
           onSendClick = {
-            showDialog = false
+            showChatAlertDialog = false
             println("Message Sent: $messageText")
           },
           onDismiss = {
-            showDialog = false
+            showChatAlertDialog = false
+          }
+        )
+      }
+      if (showAddToFavouritesDialog) {
+        AddToFavourites(
+          onDismiss = {
+            showAddToFavouritesDialog = false
           }
         )
       }
@@ -110,7 +117,7 @@ fun ShopListScreen(
           description = "Great warm shoes from the artificial leather. You can buy this model only in our shop",
           onBuyClick = {},
           onAddToFavoriteClick = {
-            showDialog = true
+            showAddToFavouritesDialog = true
           },
           onCardClick = {
             navController.navigate("selected_size")
@@ -123,7 +130,7 @@ fun ShopListScreen(
           description = "Great warm shoes from the artificial leather. You can buy this model only in our shop",
           onBuyClick = {},
           onAddToFavoriteClick = {
-            showDialog = true
+            showAddToFavouritesDialog = true
           },
           onCardClick = {
             navController.navigate("selected_size")
