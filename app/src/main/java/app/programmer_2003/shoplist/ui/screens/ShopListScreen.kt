@@ -1,5 +1,6 @@
 package app.programmer_2003.shoplist.ui.screens
 
+import ChatAlert
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -43,6 +44,7 @@ fun ShopListScreen(
   val drawerState = rememberDrawerState(DrawerValue.Closed)
   val scope = rememberCoroutineScope()
   var showDialog by remember { mutableStateOf(false) }
+  var messageText by remember { mutableStateOf("") }
 
   ModalNavigationDrawer(
     drawerState = drawerState,
@@ -67,20 +69,32 @@ fun ShopListScreen(
       },
       floatingActionButton = {
         FloatingActionButton(
-          onClick = {},
+          onClick = {
+            showDialog = true
+          },
           containerColor = FABColor
         ) {
           Image(
             modifier = Modifier.size(24.dp),
             painter = painterResource(R.drawable.fab_icon),
-            contentDescription = "",
+            contentDescription = "Add new item",
           )
         }
       }
     ) { paddingValues ->
       val scrollState = rememberScrollState()
       if (showDialog) {
-        AddToFavourites(onDismiss = { showDialog = false })
+        ChatAlert(
+          text = messageText,
+          onTextChanged = { messageText = it },
+          onSendClick = {
+            showDialog = false
+            println("Message Sent: $messageText")
+          },
+          onDismiss = {
+            showDialog = false
+          }
+        )
       }
       Column(
         modifier = Modifier
