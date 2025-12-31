@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import app.programmer_2003.shoplist.R
 import app.programmer_2003.shoplist.ui.components.AddToFavourites
 import app.programmer_2003.shoplist.ui.components.DrawerSheet
+import app.programmer_2003.shoplist.ui.components.OrderList
 import app.programmer_2003.shoplist.ui.components.ShopListCard
 import app.programmer_2003.shoplist.ui.components.ShopListTopAppBar
 import app.programmer_2003.shoplist.ui.theme.FABColor
@@ -44,6 +45,7 @@ fun ShopListScreen(
   val scope = rememberCoroutineScope()
   var showChatAlertDialog by remember { mutableStateOf(false) }
   var showAddToFavouritesDialog by remember { mutableStateOf(false) }
+  var showOrderListDialog by remember { mutableStateOf(false) }
   var messageText by remember { mutableStateOf("") }
 
   ModalNavigationDrawer(
@@ -103,6 +105,21 @@ fun ShopListScreen(
           }
         )
       }
+      if (showOrderListDialog) {
+        OrderList(
+          backButtonClick = {
+            showOrderListDialog = false
+          },
+          buyButtonClick = {
+            println("Order placed")
+            showOrderListDialog = false
+          },
+          onDismiss = {
+            showOrderListDialog = false
+          }
+        )
+      }
+
       Column(
         modifier = Modifier
           .padding(paddingValues)
@@ -115,7 +132,9 @@ fun ShopListScreen(
           title = "Leather boots",
           price = "27,5 $",
           description = "Great warm shoes from the artificial leather. You can buy this model only in our shop",
-          onBuyClick = {},
+          onBuyClick = {
+            showOrderListDialog = true
+          },
           onAddToFavoriteClick = {
             showAddToFavouritesDialog = true
           },
@@ -128,7 +147,9 @@ fun ShopListScreen(
           title = "Leather boots",
           price = "27,5 $",
           description = "Great warm shoes from the artificial leather. You can buy this model only in our shop",
-          onBuyClick = {},
+          onBuyClick = {
+            showOrderListDialog = true
+          },
           onAddToFavoriteClick = {
             showAddToFavouritesDialog = true
           },
